@@ -17,4 +17,4 @@
     - name: create app dir
       ansible.builtin.file:
         path: /app
-        state: direcrory  
+        state: directory 

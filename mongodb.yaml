@@ -1,6 +1,6 @@
 - name: mongodb
   hosts: mongodb
-  beecome: yes
+  become: yes
   tasks:
     - name: copy mongodb repo
       ansible.builtin.copy:

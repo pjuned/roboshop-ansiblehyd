@@ -29,5 +29,43 @@
         src: /tmp/catalogue.zip
         dest: /app
         remote_src: yes
+
+    - name: install dependencies
+      ansible.builtin.command:  npm install
+      args:
+        chdir: /app
+
+    - name: copy catalogue service
+      ansible.builtin.copy:
+        src: catalogue.service
+        dest: /etc/systemd/system/catalogue.service
+
+    - name: daemon reload & start
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+
+      # lets start catalogue service after data is loaded.
+
+    - name: copy mongodb repo
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d/mongodb.repo
+
+    - name: install mongodb client
+      ansible.builtin.package:
+        name: mongodb-org-shell
+        state : present
+
+    - name: get the categories count
+      ansible.builtin.command: mongo --host mongodb.devopsju.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+      register: product_count
+
+    - name: print the count
+      ansible.builtin.debug:
+        msg: "product_count: {{product_count}}"
+
+    
+
+
       
     

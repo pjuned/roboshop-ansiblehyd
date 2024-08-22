@@ -18,7 +18,7 @@
         state: started
         enabled: yes
 
-    - name: Replace old hostname with new hostname (requires Ansible >= 2.4)
+    - name: allow remote connections
       ansible.builtin.replace:
         path: /etc/mongod.conf
         regexp: '127.0.01'

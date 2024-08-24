@@ -20,7 +20,7 @@
     - name: Download web App
       ansible.builtin.get_url:
         url:  https://roboshop-builds.s3.amazonaws.com/web.zip
-        path: /tmp
+        dest: /tmp
 
     - name: extract the downloaded content into html dir
       ansible.builtin.unarchive:

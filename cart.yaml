@@ -14,7 +14,7 @@
       ansible.builtin.user:
         name: roboshop
 
-    - name: Recursively remove directory
+    - name: Recursively remove app directory
       ansible.builtin.file:
         path: /app
         state: absent
@@ -48,5 +48,11 @@
     - name: daemon reload & start
       ansible.builtin.systemd_service:
         daemon_reload: true
+
+    - name: start & enable cart
+      ansible.builtin.service:
+        name: cart
+        state: restarted
+        enabled: yes
 
       

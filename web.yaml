@@ -9,7 +9,7 @@
 
     - name: remove the default content
       ansible.builtin.file:
-        path: /usr/share/ngix/html
+        path: /usr/share/nginx/html
         state: absent
 
     - name: create html directory
